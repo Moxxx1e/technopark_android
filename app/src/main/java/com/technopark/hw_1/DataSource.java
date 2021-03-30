@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataSource {
-    private static DataSource isInstance;
+
     private final List<NumberModel> mData;
 
-    public DataSource() {
+    public DataSource(int size) {
         mData = new ArrayList<>();
 
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= size; i++) {
             NumberModel model = new NumberModel(i, i % 2 == 0 ? Color.RED : Color.BLUE);
             mData.add(model);
         }
@@ -24,20 +24,11 @@ public class DataSource {
         mData.add(numberModel);
     }
 
-
     public List<NumberModel> getData() {
         return mData;
-    }
-
-    public synchronized static DataSource getInstance() {
-        if (isInstance == null) {
-            isInstance = new DataSource();
-        }
-        return isInstance;
     }
 
     public int getSize() {
         return mData.size();
     }
-
 }

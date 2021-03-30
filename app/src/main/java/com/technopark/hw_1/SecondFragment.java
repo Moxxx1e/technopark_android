@@ -10,6 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 public class SecondFragment extends Fragment {
+    private final NumberModel mNumberModel;
+
+    public SecondFragment(NumberModel numberModel) {
+        mNumberModel = numberModel;
+    }
 
     @Override
     public View onCreateView(
@@ -22,7 +27,8 @@ public class SecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        //TextView bigNumberView = view.findViewById(R.id.big_number);
-        //bigNumberView.setText();
+        TextView bigNumberView = view.findViewById(R.id.big_number);
+        bigNumberView.setText(String.valueOf(mNumberModel.mValue));
+        bigNumberView.setTextColor(mNumberModel.mColor);
     }
 }

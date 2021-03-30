@@ -7,18 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 public class NumberAdapter extends RecyclerView.Adapter<NumberViewHolder> {
+    private final OnNumberClickListener mOnNumberClickListener;
+    private final DataSource mDataSource;
 
-    List<NumberModel> mData = DataSource.getInstance().getData();
-
-    private final View.OnClickListener mOnNumberClickListener;
-
-    public NumberAdapter(View.OnClickListener onNumberClickListener) {
+    public NumberAdapter(DataSource dataSource, OnNumberClickListener onNumberClickListener) {
+        mDataSource = dataSource;
         mOnNumberClickListener = onNumberClickListener;
     }
-
 
     @NonNull
     @Override
@@ -30,14 +26,12 @@ public class NumberAdapter extends RecyclerView.Adapter<NumberViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NumberViewHolder holder, int position) {
-        NumberModel numberModel = mData.get(position);
+        NumberModel numberModel = mDataSource.getData().get(position);
         holder.Bind(numberModel);
     }
 
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mDataSource.getSize();
     }
-
-
 }
